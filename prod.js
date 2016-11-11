@@ -5,19 +5,29 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight  * 0.8;
 
 var player = require("./player.js");
-var scene = require("./scene.js")
+var scene = require("./scene.js");
+var rock = require("./rock.js")[0];
+var rock2 = require("./rock.js")[1];
+
+
 
 function gameloop() {
   ctx.clearRect(0,0,canvas.width, canvas.height);
   player.update();
+  rock.update();
+  rock2.update();
+
+
   scene.render(ctx, canvas)
   player.render(ctx);
+  rock.render(ctx);
+  rock2.render(ctx);
   window.requestAnimationFrame(gameloop);
 }
 
 gameloop();
 
-},{"./player.js":2,"./scene.js":3}],2:[function(require,module,exports){
+},{"./player.js":2,"./rock.js":3,"./scene.js":4}],2:[function(require,module,exports){
 var f1 = document.getElementById("f1");
 var f2 = document.getElementById("f2");
 var f3 = document.getElementById("f3");
@@ -68,6 +78,42 @@ var player = {
 module.exports = player;
 
 },{}],3:[function(require,module,exports){
+var rock = {
+    x: 600,
+    y: window.innerHeight * 0.5,
+
+    update: function() {
+        this.x -= 3;
+        if (this.x < 0) {
+            this.x = 500;
+        }
+    },
+
+    render: function(ctx) {
+      ctx.fillRect(this.x, this.y, 100, 100);
+    }
+  };
+var rock2 = {
+    x: 800,
+    y: window.innerHeight * 0.5,
+
+    update: function() {
+        this.x -= 3;
+        if (this.x < 0) {
+            this.x = 500;
+        }
+    },
+
+
+    render: function(ctx) {
+        ctx.fillRect(this.x, this.y, 100, 100);
+    }
+};
+
+
+module.exports = [rock, rock2];
+
+},{}],4:[function(require,module,exports){
 var sky = document.getElementById("sky");
 
 module.exports = {
