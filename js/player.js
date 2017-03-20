@@ -16,6 +16,7 @@ var player = {
     x: 50,
     y: window.innerHeight * 0.5,
     velY: 10,
+    score: 0,
     sprite: f1,
     numUpdates: 0,
     doubleJumping: false,
@@ -33,8 +34,8 @@ var player = {
             this.nextSprite();
         }
         this.y += this.velY;
-        if (this.y >= window.innerHeight * 0.5) {
-            this.y = window.innerHeight * 0.5;
+        if (this.y >= window.innerHeight * 0.5  ) {
+            this.y = window.innerHeight * 0.5 ;
             this.doubleJumping = false;
         }
         if (this.velY < 10) {
@@ -44,5 +45,6 @@ var player = {
     render: function(ctx) {
         ctx.drawImage(this.sprite, this.x, this.y, 100, 100);
     }
+
 };
 module.exports = player;
